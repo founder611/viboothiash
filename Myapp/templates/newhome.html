@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ECOMONKS – Divya Bhimseni Karpooram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Temple Grade Edible Camphor – Pure, Traditional, Authentic">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --amber:    #C8873A;
+            --amber-lt: #E8B46A;
+            --brown:    #2B1810;
+            --brown-md: #4A2C1A;
+            --cream:    #FDF6EC;
+            --cream-dk: #F5EBD8;
+            --text:     #3D2010;
+            --muted:    #7A5C3E;
+            --white:    #FFFFFF;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ── UTILITY ── */
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        .section-pad { padding: 80px 0; }
+        @media(max-width:768px){ .section-pad{ padding:56px 0; } }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(43,24,16,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px;
+            border-bottom: 1px solid rgba(200,135,58,0.25);
+            transition: background .3s;
+        }
+        .navbar.scrolled { background: rgba(43,24,16,0.99); }
+
+        .navbar-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none;
+        }
+        .navbar-brand img {
+            width: 46px; height: 46px;
+            border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--amber);
+        }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem; font-weight: 600;
+            color: var(--amber); letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 4px;
+            list-style: none;
+        }
+        .nav-links a {
+            display: block; padding: 8px 14px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.82rem; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            border-radius: 4px;
+            transition: color .2s, background .2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+
+        /* Dropdown */
+        .nav-item { position: relative; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown {
+            display: none;
+            position: absolute; top: 100%; left: 0;
+            background: var(--brown);
+            border: 1px solid rgba(200,135,58,0.2);
+            border-radius: 6px; overflow: hidden;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .dropdown a {
+            padding: 10px 16px; display: block;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem; letter-spacing: 1px;
+            text-transform: capitalize;
+            border-radius: 0;
+        }
+        .dropdown a:hover { background: rgba(200,135,58,0.15); color: var(--amber); }
+
+        /* Hamburger */
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 4px;
+            background: none; border: none;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--amber); border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .hamburger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2){ opacity: 0; }
+        .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile nav */
+        .mobile-nav {
+            display: none; position: fixed;
+            top: 70px; left: 0; right: 0;
+            background: var(--brown);
+            padding: 20px;
+            border-bottom: 1px solid rgba(200,135,58,0.2);
+            z-index: 999;
+            animation: slideDown .25s ease;
+        }
+        @keyframes slideDown{ from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none} }
+        .mobile-nav.open { display: block; }
+        .mobile-nav a {
+            display: block; padding: 12px 4px;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover { color: var(--amber); }
+
+        @media(max-width:900px){ .nav-links, .nav-links { display: none; } .hamburger{ display: flex; } }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; min-height: 100svh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-slides { position: absolute; inset: 0; }
+        .hero-slide {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.2s ease;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(43,24,16,0.82) 0%,
+                rgba(43,24,16,0.55) 50%,
+                rgba(43,24,16,0.72) 100%
+            );
+        }
+
+        /* Placeholder slides since images are server-side */
+        .slide-1 { background: linear-gradient(135deg,#2B1810 0%,#6B3A1F 60%,#2B1810 100%); }
+        .slide-2 { background: linear-gradient(135deg,#1A0F08 0%,#7A4520 60%,#1A0F08 100%); }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            padding: 100px 20px 60px;
+            max-width: 800px;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: var(--amber);
+            border: 1px solid rgba(200,135,58,0.4);
+            padding: 6px 20px; border-radius: 20px;
+            margin-bottom: 28px;
+            animation: fadeUp .8s .2s both;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.2rem, 10vw, 7.5rem);
+            font-weight: 300; line-height: 1;
+            color: var(--white);
+            letter-spacing: -1px;
+            animation: fadeUp .8s .4s both;
+        }
+        .hero-title span { color: var(--amber); font-style: italic; }
+        .hero-subtitle {
+            margin-top: 20px;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: rgba(255,255,255,0.75);
+            font-weight: 300; letter-spacing: 0.5px;
+            animation: fadeUp .8s .6s both;
+        }
+        .hero-cta {
+            margin-top: 40px;
+            display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp .8s .8s both;
+        }
+        .btn-gold {
+            padding: 14px 36px;
+            background: var(--amber);
+            color: var(--brown);
+            font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-decoration: none;
+            border: none; cursor: pointer;
+            border-radius: 3px;
+            transition: background .2s, transform .2s;
+            display: inline-block;
+        }
+        .btn-gold:hover { background: var(--amber-lt); transform: translateY(-2px); }
+        .btn-outline {
+            padding: 14px 36px;
+            background: transparent;
+            color: var(--white);
+            font-size: 0.8rem; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 3px;
+            transition: border-color .2s, color .2s, transform .2s;
+            display: inline-block;
+        }
+        .btn-outline:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+        .slide-dots {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 3; display: flex; gap: 8px;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 8px;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer; transition: all .3s;
+        }
+        .dot.active { width: 28px; background: var(--amber); }
+
+        @keyframes fadeUp{ from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none} }
+
+        /* ── DIVIDER ── */
+        .divider-ornament {
+            text-align: center; padding: 12px 0;
+            color: var(--amber); font-size: 1.1rem;
+            letter-spacing: 8px;
+        }
+
+        /* ── ABOUT ── */
+        .about { background: var(--cream); }
+        .section-label {
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: var(--amber); margin-bottom: 12px;
+        }
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 300; line-height: 1.15;
+            color: var(--brown);
+        }
+        .section-heading em { font-style: italic; color: var(--amber); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px 1fr;
+            gap: 50px; align-items: center;
+            margin-top: 56px;
+        }
+        @media(max-width:960px){
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-img-wrap { order: -1; max-height: 340px; }
+        }
+        .about-img-wrap {
+            border-radius: 4px; overflow: hidden;
+            position: relative;
+        }
+        .about-img-wrap img {
+            width: 100%; height: 480px; object-fit: cover;
+            display: block;
+            border-radius: 4px;
+        }
+        @media(max-width:960px){ .about-img-wrap img{ height: 300px; } }
+
+        .about-img-badge {
+            position: absolute; bottom: -18px; right: -18px;
+            width: 100px; height: 100px;
+            background: var(--amber);
+            border-radius: 50%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: var(--brown);
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 4px 20px rgba(200,135,58,0.5);
+        }
+        .about-img-badge .badge-year { font-size: 1.4rem; font-weight: 600; line-height: 1; }
+        .about-img-badge .badge-text { font-size: 0.6rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        @media(max-width:960px){ .about-img-badge{ display: none; } }
+
+        .about-text p {
+            color: var(--muted);
+            font-size: 0.97rem; line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .checklist { list-style: none; margin-top: 20px; }
+        .checklist li {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 0;
+            font-size: 0.92rem; font-weight: 500;
+            color: var(--text);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .checklist li:last-child { border: none; }
+        .checklist li i { color: var(--amber); font-size: 0.8rem; }
+
+        /* ── SPECIALITIES ── */
+        .spec { background: var(--cream-dk); }
+        .spec-header { text-align: center; margin-bottom: 56px; }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        @media(max-width:640px){ .spec-grid{ grid-template-columns: 1fr; } }
+
+        .spec-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 28px;
+            display: flex; gap: 20px; align-items: flex-start;
+            border: 1px solid rgba(200,135,58,0.12);
+            transition: box-shadow .25s, transform .25s;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(43,24,16,0.12);
+        }
+        .spec-img {
+            width: 90px; height: 90px; flex-shrink: 0;
+            border-radius: 6px; overflow: hidden;
+        }
+        .spec-img img { width: 100%; height: 100%; object-fit: cover; }
+        .spec-icon-wrap {
+            width: 90px; height: 90px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--amber), var(--amber-lt));
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--brown);
+        }
+        .spec-body h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--brown); margin-bottom: 8px;
+        }
+        .spec-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+        /* ── VISION STRIP ── */
+        .vision-strip {
+            background: linear-gradient(135deg, var(--brown) 0%, var(--brown-md) 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .vision-strip .section-label { color: var(--amber-lt); }
+        .vision-strip .section-heading { color: var(--white); }
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+        @media(max-width:768px){ .vision-grid{ grid-template-columns: 1fr; gap: 28px; } }
+        .vision-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .vision-icon {
+            width: 64px; height: 64px;
+            border: 1px solid rgba(200,135,58,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--amber);
+        }
+        .vision-item h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--white);
+        }
+        .vision-item p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 220px; }
+
+        /* ── ORDER ── */
+        .order-section { background: var(--cream); }
+        .order-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: start;
+        }
+        @media(max-width:820px){ .order-wrapper{ grid-template-columns: 1fr; gap: 40px; } }
+
+        .order-info .section-heading { margin-bottom: 20px; }
+        .order-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; }
+        .order-perks { list-style: none; }
+        .order-perks li {
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.93rem; color: var(--text);
+        }
+        .order-perks li:last-child { border: none; }
+        .order-perks li i { color: var(--amber); margin-top: 3px; font-size: 0.85rem; }
+
+        .order-form {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 36px;
+            border: 1px solid rgba(200,135,58,0.15);
+            box-shadow: 0 4px 40px rgba(43,24,16,0.07);
+        }
+        .order-form h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; font-weight: 600;
+            color: var(--brown); margin-bottom: 24px;
+            text-align: center;
+        }
+        .form-field { margin-bottom: 16px; }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 13px 16px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text);
+            background: var(--cream);
+            border: 1px solid rgba(200,135,58,0.2);
+            border-radius: 6px;
+            outline: none;
+            transition: border-color .2s;
+            appearance: none;
+        }
+        .form-field input:focus,
+        .form-field select:focus { border-color: var(--amber); }
+        .form-field input::placeholder { color: var(--muted); }
+        .form-field select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C8873A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--amber);
+            color: var(--brown);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            border: none; border-radius: 6px;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+            margin-top: 8px;
+        }
+        .btn-submit:hover { background: var(--amber-lt); transform: translateY(-2px); }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--brown);
+            color: rgba(255,255,255,0.7);
+            padding: 64px 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+            gap: 48px;
+        }
+        @media(max-width:900px){ .footer-grid{ grid-template-columns: 1fr 1fr; gap: 36px; } }
+        @media(max-width:560px){ .footer-grid{ grid-template-columns: 1fr; gap: 28px; } }
+
+        .footer-col h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem; font-weight: 600;
+            color: var(--white); margin-bottom: 20px;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .footer-brand {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 16px;
+        }
+        .footer-brand img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--amber); }
+        .footer-brand span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--amber); letter-spacing: 3px;
+        }
+        .footer-col p { font-size: 0.87rem; line-height: 1.8; margin-bottom: 20px; }
+        .footer-contact-item {
+            display: flex; gap: 10px; align-items: flex-start;
+            font-size: 0.87rem; margin-bottom: 12px;
+        }
+        .footer-contact-item i { color: var(--amber); margin-top: 3px; flex-shrink: 0; }
+
+        .footer-hours dt { font-size: 0.82rem; font-weight: 500; color: var(--white); letter-spacing: 1px; text-transform: uppercase; margin-top: 10px; }
+        .footer-hours dd { font-size: 0.87rem; margin: 2px 0 0 0; }
+
+        .social-links { display: flex; gap: 10px; margin-top: 4px; }
+        .social-link {
+            width: 38px; height: 38px;
+            border: 1px solid rgba(200,135,58,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background .2s, border-color .2s, color .2s;
+        }
+        .social-link:hover { background: var(--amber); border-color: var(--amber); color: var(--brown); }
+
+        .footer-sub-form { display: flex; gap: 0; margin-top: 14px; }
+        .footer-sub-form input {
+            flex: 1; padding: 11px 14px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem; color: var(--white);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(200,135,58,0.25);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        .footer-sub-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .footer-sub-form button {
+            padding: 11px 18px;
+            background: var(--amber); border: none;
+            color: var(--brown); font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; border-radius: 0 4px 4px 0;
+            transition: background .2s;
+        }
+        .footer-sub-form button:hover { background: var(--amber-lt); }
+
+        .footer-bottom {
+            margin-top: 48px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+            font-size: 0.82rem;
+        }
+        .footer-bottom span { color: var(--amber); }
+
+        /* ── BACK TO TOP ── */
+        .back-top {
+            position: fixed; bottom: 24px; right: 24px; z-index: 900;
+            width: 44px; height: 44px;
+            background: var(--amber);
+            color: var(--brown);
+            border: none; border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem;
+            box-shadow: 0 4px 16px rgba(200,135,58,0.4);
+            transition: transform .2s, background .2s;
+        }
+        .back-top:hover { background: var(--amber-lt); transform: translateY(-3px); }
+        .back-top.visible { display: flex; }
+
+        /* ── IMAGE FALLBACK ── */
+        .img-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--brown-md), var(--amber));
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 2rem; opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <a href="#" class="navbar-brand">
+        <img src="/static/homepage/img/logo.jpeg" alt="Ecomonks Logo" onerror="this.style.display='none'">
+        <span class="brand-name">Ecomonks</span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#speciality">Service</a></li>
+        <li><a href="#order">Products</a></li>
+        <li class="nav-item">
+            <a href="#">Pages ▾</a>
+            <div class="dropdown">
+                <a href="#">Reservation</a>
+                <a href="#">Testimonial</a>
+            </div>
+        </li>
+        <li><a href="#footer">Contact</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#speciality">Service</a>
+    <a href="#order">Products</a>
+    <a href="#">Reservation</a>
+    <a href="#">Testimonial</a>
+    <a href="#footer">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-slides">
+        <div class="hero-slide slide-1 active" style="background-image:url('/static/homepage/img/p2.jpeg')"></div>
+        <div class="hero-slide slide-2" style="background-image:url('/static/homepage/img/p3.jpeg')"></div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-eyebrow">✦ Divya Bhimseni Karpooram ✦</div>
+        <h1 class="hero-title">Pure <em>Karpooram</em><br>for the Divine</h1>
+        <p class="hero-subtitle">Premium Temple Grade Edible Camphor · Crafted for Pooja, Meditation &amp; Spiritual Wellness</p>
+        <div class="hero-cta">
+            <a href="#order" class="btn-gold">Order Now</a>
+            <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+    </div>
+
+    <div class="slide-dots">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <!-- Left text -->
+            <div class="about-text">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-heading">Serving Since<br><em>2025</em></h2>
+                <p style="margin-top:20px">Ecomonks Divya Bhimseni Karpooram is carefully sourced and crafted to deliver authentic purity, divine fragrance, and traditional spiritual value.</p>
+                <p>Made from premium natural ingredients with no harmful chemicals or synthetic fragrance, our Bhimseni Camphor is ideal for daily pooja, meditation, havan, and aromatherapy.</p>
+                <a href="#order" class="btn-gold" style="margin-top:12px">Make an Order</a>
+            </div>
+
+            <!-- Centre image -->
+            <div class="about-img-wrap">
+                <img src="/static/homepage/img/_01.png" alt="Pure Karpooram" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22480%22%3E%3Crect fill=%22%234A2C1A%22 width=%22400%22 height=%22480%22/%3E%3Ctext x=%22200%22 y=%22250%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22%23C8873A%22%3E🪔%3C/text%3E%3C/svg%3E'">
+                <div class="about-img-badge">
+                    <span class="badge-year">2025</span>
+                    <span class="badge-text">Est.</span>
+                </div>
+            </div>
+
+            <!-- Right checklist -->
+            <div>
+                <div class="section-label">Our Vision</div>
+                <h2 class="section-heading">Why <em>Choose</em><br>Ecomonks?</h2>
+                <ul class="checklist" style="margin-top:24px">
+                    <li><i class="fa fa-check-circle"></i>100% Pure Bhimseni Camphor</li>
+                    <li><i class="fa fa-check-circle"></i>Edible Temple Grade Quality</li>
+                    <li><i class="fa fa-check-circle"></i>Natural Ingredients Only</li>
+                    <li><i class="fa fa-check-circle"></i>No Chemicals Added</li>
+                    <li><i class="fa fa-check-circle"></i>Premium A++ Grade</li>
+                    <li><i class="fa fa-check-circle"></i>Long Lasting Aroma</li>
+                    <li><i class="fa fa-check-circle"></i>Spiritual &amp; Wellness Use</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SPECIALITY -->
+<section class="spec section-pad" id="speciality">
+    <div class="container">
+        <div class="spec-header">
+            <div class="section-label">Our Speciality</div>
+            <h2 class="section-heading">Edible &amp; <em>Organic</em> Karpooram</h2>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🌿</div>
+                <div class="spec-body">
+                    <h4>Premium Quality Products</h4>
+                    <p>Carefully crafted edible karpooram made with the finest ingredients to ensure purity, freshness, and authentic aroma in every pack.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🪔</div>
+                <div class="spec-body">
+                    <h4>Traditional Purity</h4>
+                    <p>Our edible karpooram preserves traditional values and unmatched purity, trusted by generations for spiritual and culinary use.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">✨</div>
+                <div class="spec-body">
+                    <h4>Natural Ingredients</h4>
+                    <p>Made from high-quality natural ingredients, offering rich fragrance, crystal clarity, and premium quality you can trust.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🏆</div>
+                <div class="spec-body">
+                    <h4>Trusted Since 2025</h4>
+                    <p>With a commitment to excellence and customer trust, we provide authentic edible karpooram with uncompromised quality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VISION STRIP -->
+<section class="vision-strip">
+    <div class="container">
+        <div class="section-label">Our Promise</div>
+        <h2 class="section-heading">Pure · <em>Traditional</em> · Authentic</h2>
+        <div class="vision-grid">
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-leaf"></i></div>
+                <h5>100% Natural</h5>
+                <p>No chemicals. No synthetics. Only pure Bhimseni camphor from nature.</p>
+            </div>
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-truck"></i></div>
+                <h5>Fast Delivery</h5>
+                <p>Doorstep delivery across Kerala and India, fresh and securely packed.</p>
+            </div>
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-award"></i></div>
+                <h5>Temple Grade</h5>
+                <p>A++ grade quality certified for pooja, havan, meditation, and edible use.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER -->
+<section class="order-section section-pad" id="order">
+    <div class="container">
+        <div class="order-wrapper">
+            <div class="order-info">
+                <div class="section-label">Buy Edible Karpooram</div>
+                <h2 class="section-heading">Place Your<br><em>Order Today</em></h2>
+                <p>Premium quality edible karpooram made with purity and tradition. Trusted for its authentic aroma, freshness, and quality.</p>
+                <ul class="order-perks">
+                    <li><i class="fa fa-circle-check"></i> 100% Pure Quality – no synthetic additives</li>
+                    <li><i class="fa fa-circle-check"></i> Natural Ingredients – crystal clarity guaranteed</li>
+                    <li><i class="fa fa-circle-check"></i> Fast delivery available across India</li>
+                    <li><i class="fa fa-circle-check"></i> Available in 100g, 250g, and 500g packs</li>
+                </ul>
+            </div>
+
+            <div class="order-form">
+                <h3>Order Now</h3>
+                <form method="post" action="order_post/">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="tel" name="phone" placeholder="Contact Number" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="address" placeholder="Delivery Address" required>
+                    </div>
+                    <div class="form-field">
+                        <select name="quantity" required>
+                            <option value="" disabled selected>Select Quantity</option>
+                            <option value="100g">100g Pack</option>
+                            <option value="250g">250g Pack</option>
+                            <option value="500g">500g Pack</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Buy Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Brand -->
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <img src="/static/homepage/img/logo.jpeg" alt="Logo" onerror="this.style.display='none'">
+                    <span>ECOMONKS</span>
+                </div>
+                <p>Premium quality edible karpooram crafted with purity, tradition, and authenticity. Trusted by generations.</p>
+                <div class="social-links">
+                    <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <span>Yathisha Bliss No 9/329, Moorkanikkara Kozhukully PO, Thrissur 680752, Kerala, India</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa fa-phone-alt"></i>
+                    <span>+91 9845736584</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <span>Founder@ecomonks.in</span>
+                </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="footer-col">
+                <h4>Working Hours</h4>
+                <dl class="footer-hours">
+                    <dt>Monday – Saturday</dt>
+                    <dd>9:00 AM – 7:00 PM</dd>
+                    <dt>Sunday</dt>
+                    <dd>Closed</dd>
+                </dl>
+            </div>
+
+            <!-- Subscribe -->
+            <div class="footer-col">
+                <h4>Subscribe</h4>
+                <p>Get updates, offers, and the latest product information straight to your inbox.</p>
+                <form method="POST" action="emailenquiry/">
+                    {% csrf_token %}
+                    <div class="footer-sub-form">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit">Go</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2025 <span>ECOMONKS</span>. All Rights Reserved.</p>
+            <p>Designed with ❤️ for Pure Edible Karpooram</p>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+    <i class="fa fa-angle-up"></i>
+</button>
+
+<script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+        document.getElementById('backTop').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Back to top
+    document.getElementById('backTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hamburger
+    const ham = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    ham.addEventListener('click', () => {
+        ham.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            ham.classList.remove('open');
+            mobileNav.classList.remove('open');
+        });
+    });
+
+    // Hero slideshow
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+
+    function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.slide)));
+    setInterval(() => goTo(current + 1), 5000);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>

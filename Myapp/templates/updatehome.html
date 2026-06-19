@@ -1,0 +1,1761 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ECOMONKS – Sacred Vibhoothi Holy Ash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Pure Sacred Vibhoothi – Temple Grade Holy Ash for Pooja, Tilak &amp; Spiritual Rituals">
+    <style>body{background:#F7F4EF}.navbar{background:rgba(44,42,40,0.97)}</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --saffron:    #C6601A;
+            --saffron-lt: #E8923D;
+            --deep-saffron:   #9C4A14;
+            --stone:      #2C2A28;
+            --stone-md:   #403D3A;
+            --cream:    #F7F4EF;
+            --cream-dk: #ECE7DD;
+            --text:     #332F2B;
+            --muted:    #796F64;
+            --white:    #FFFFFF;
+            --sage:     #6E8F6B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        .section-pad { padding: 80px 0; }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(44,42,40,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0 20px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            height: 64px;
+            border-bottom: 1px solid rgba(198,96,26,0.25);
+            -webkit-transition: background .3s;
+            transition: background .3s;
+        }
+        .navbar.scrolled { background: rgba(44,42,40,0.99); }
+        .navbar-brand {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+        }
+        .navbar-brand img {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            -webkit-object-fit: cover;
+            object-fit: cover;
+            border: 2px solid var(--saffron);
+        }
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem; font-weight: 600;
+            color: var(--saffron-lt); letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+        .nav-links a {
+            display: block; padding: 8px 12px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            border-radius: 4px;
+            -webkit-transition: color .2s;
+            transition: color .2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--saffron-lt); }
+        .nav-item { position: relative; }
+        .nav-item:hover .dropdown { display: block; }
+        .dropdown {
+            display: none;
+            position: absolute; top: 100%; left: 0;
+            background: var(--stone);
+            border: 1px solid rgba(198,96,26,0.2);
+            border-radius: 6px; overflow: hidden;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .dropdown a {
+            padding: 10px 16px; display: block;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.78rem; letter-spacing: 1px;
+            text-transform: capitalize;
+            border-radius: 0;
+        }
+        .dropdown a:hover { background: rgba(198,96,26,0.15); color: var(--saffron-lt); }
+        .hamburger {
+            display: none;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer; padding: 4px;
+            background: none; border: none;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--saffron-lt); border-radius: 2px;
+            -webkit-transition: transform .3s, opacity .3s;
+            transition: transform .3s, opacity .3s;
+        }
+        .hamburger.open span:nth-child(1){ -webkit-transform: translateY(7px) rotate(45deg); transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2){ opacity: 0; }
+        .hamburger.open span:nth-child(3){ -webkit-transform: translateY(-7px) rotate(-45deg); transform: translateY(-7px) rotate(-45deg); }
+        .mobile-nav {
+            display: none; position: fixed;
+            top: 64px; left: 0; right: 0;
+            background: var(--stone);
+            padding: 16px 20px 20px;
+            border-bottom: 1px solid rgba(198,96,26,0.2);
+            z-index: 999;
+            -webkit-animation: slideDown .25s ease;
+            animation: slideDown .25s ease;
+        }
+        @-webkit-keyframes slideDown{ from{opacity:0;-webkit-transform:translateY(-10px);transform:translateY(-10px)}to{opacity:1;-webkit-transform:none;transform:none} }
+        @keyframes slideDown{ from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none} }
+        .mobile-nav.open { display: block; }
+        .mobile-nav a {
+            display: block; padding: 13px 4px;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover { color: var(--saffron-lt); }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            min-height: 100vh;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #2C2A28;
+        }
+        .hero-slides { position: absolute; inset: 0; top:0; left:0; right:0; bottom:0; }
+        .hero-slide {
+            position: absolute; inset: 0; top:0; left:0; right:0; bottom:0;
+            background-size: cover; background-position: center;
+            opacity: 0;
+            -webkit-transition: opacity 1.1s ease;
+            transition: opacity 1.1s ease;
+            will-change: opacity;
+        }
+        .hero-slide:first-child { opacity: 1; }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide:not(.active):not(:first-child) { opacity: 0; }
+        .hero-slide::after {
+            content: ''; position: absolute; inset: 0; top:0; left:0; right:0; bottom:0;
+            background: linear-gradient(135deg,rgba(44,42,40,0.84) 0%,rgba(44,42,40,0.55) 50%,rgba(44,42,40,0.74) 100%);
+        }
+        .slide-1 { background-color: #3D2A18; }
+        .slide-2 { background-color: #2C2A28; }
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            padding: 100px 24px 80px;
+            max-width: 820px;
+            width: 100%;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 4px; text-transform: uppercase;
+            color: var(--saffron-lt);
+            border: 1px solid rgba(198,96,26,0.4);
+            padding: 6px 18px; border-radius: 20px;
+            margin-bottom: 24px;
+            -webkit-animation: fadeUp .8s .2s both;
+            animation: fadeUp .8s .2s both;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 10vw, 7rem);
+            font-weight: 300; line-height: 1.05;
+            color: var(--white);
+            -webkit-animation: fadeUp .8s .4s both;
+            animation: fadeUp .8s .4s both;
+        }
+        .hero-title span { color: var(--saffron-lt); font-style: italic; }
+        .hero-subtitle {
+            margin-top: 18px;
+            font-size: clamp(0.88rem, 2.5vw, 1.05rem);
+            color: rgba(255,255,255,0.75);
+            font-weight: 300; letter-spacing: 0.3px;
+            padding: 0 8px;
+            -webkit-animation: fadeUp .8s .6s both;
+            animation: fadeUp .8s .6s both;
+        }
+        .hero-cta {
+            margin-top: 36px;
+            display: -webkit-flex;
+            display: flex;
+            gap: 12px;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-animation: fadeUp .8s .8s both;
+            animation: fadeUp .8s .8s both;
+        }
+        .btn-gold {
+            padding: 14px 32px;
+            background: var(--saffron);
+            color: var(--white);
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-decoration: none;
+            border: none; cursor: pointer;
+            border-radius: 3px;
+            -webkit-transition: background .2s, -webkit-transform .2s;
+            transition: background .2s, transform .2s;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .btn-gold:hover { background: var(--saffron-lt); -webkit-transform: translateY(-2px); transform: translateY(-2px); }
+        .btn-outline {
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--white);
+            font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 3px;
+            -webkit-transition: border-color .2s, color .2s, -webkit-transform .2s;
+            transition: border-color .2s, color .2s, transform .2s;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .btn-outline:hover { border-color: var(--saffron-lt); color: var(--saffron-lt); -webkit-transform: translateY(-2px); transform: translateY(-2px); }
+        .slide-dots {
+            position: absolute; bottom: 28px; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);
+            z-index: 3;
+            display: -webkit-flex;
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 8px;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+        .dot.active { width: 28px; background: var(--saffron-lt); }
+        @-webkit-keyframes fadeUp{ from{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:none;transform:none} }
+        @keyframes fadeUp{ from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none} }
+
+        /* ── SECTION LABELS ── */
+        .section-label {
+            font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: var(--saffron); margin-bottom: 10px;
+        }
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.9rem, 5vw, 3rem);
+            font-weight: 300; line-height: 1.15;
+            color: var(--stone);
+        }
+        .section-heading em { font-style: italic; color: var(--saffron); }
+
+        /* ── ABOUT ── */
+        .about { background: var(--cream); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px 1fr;
+            gap: 48px;
+            -webkit-align-items: center;
+            align-items: center;
+            margin-top: 52px;
+        }
+        .about-img-wrap {
+            border-radius: 8px; overflow: hidden;
+            position: relative;
+        }
+        .about-img-wrap img {
+            width: 100%;
+            height: 460px;
+            -webkit-object-fit: cover;
+            object-fit: cover;
+            -webkit-object-position: center;
+            object-position: center;
+            border-radius: 8px;
+        }
+        .about-img-badge {
+            position: absolute; bottom: 16px; right: 16px;
+            width: 90px; height: 90px;
+            background: var(--saffron);
+            border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 4px 20px rgba(198,96,26,0.5);
+        }
+        .about-img-badge .badge-year { font-size: 1.3rem; font-weight: 600; line-height: 1; }
+        .about-img-badge .badge-text { font-size: 0.58rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .about-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 16px; }
+        .checklist { list-style: none; margin-top: 18px; }
+        .checklist li {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 0.9rem; font-weight: 500;
+            color: var(--text);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .checklist li:last-child { border: none; }
+        .checklist li i { color: var(--saffron); font-size: 0.78rem; -webkit-flex-shrink: 0; flex-shrink: 0; }
+
+        /* ════════════════════════════════════════
+           GALLERY — SAFARI / iPHONE FIXED
+        ════════════════════════════════════════ */
+        .gallery-section { background: var(--cream-dk); padding: 80px 0; }
+        .gallery-header { text-align: center; margin-bottom: 50px; }
+        .gallery-carousel-wrap {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .gallery-track-outer {
+            overflow: hidden;
+            border-radius: 14px;
+            height: 560px;
+            position: relative;
+        }
+        .gallery-track {
+            display: -webkit-flex;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: -webkit-transform .55s cubic-bezier(.4,0,.2,1);
+            transition: transform .55s cubic-bezier(.4,0,.2,1);
+            will-change: transform;
+        }
+        .gallery-page {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            display: -webkit-flex;
+            display: flex;
+            gap: 6px;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+        }
+        .gallery-slide {
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 0;
+            min-height: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--cream-dk);
+        }
+        .gallery-slide img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-object-fit: cover;
+            object-fit: cover;
+            -webkit-object-position: center;
+            object-position: center;
+            display: block;
+            font-size: 0;
+            color: transparent;
+        }
+        .gallery-slide-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 24px 20px 16px;
+            background: linear-gradient(to top, rgba(44,42,40,0.82) 0%, transparent 100%);
+            border-radius: 0 0 8px 8px;
+            z-index: 2;
+        }
+        .gallery-slide-caption span {
+            color: var(--saffron-lt);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .gallery-slide-caption p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.82rem;
+            margin-top: 3px;
+        }
+        .gallery-btn {
+            position: absolute;
+            top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%);
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.92);
+            border: none;
+            border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--saffron);
+            font-size: 1.05rem;
+            box-shadow: 0 4px 18px rgba(44,42,40,0.2);
+            -webkit-transition: background .2s, -webkit-transform .2s;
+            transition: background .2s, transform .2s;
+            z-index: 5;
+        }
+        .gallery-btn:hover {
+            background: var(--saffron);
+            color: var(--white);
+            -webkit-transform: translateY(-50%) scale(1.08);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .gallery-prev { left: -22px; }
+        .gallery-next { right: -22px; }
+        .gallery-dots {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 22px;
+        }
+        .gallery-dot {
+            width: 8px; height: 8px; border-radius: 8px;
+            background: rgba(198,96,26,0.3);
+            border: none; padding: 0; cursor: pointer;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+        .gallery-dot.active { width: 28px; background: var(--saffron); }
+        .gallery-counter {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.78rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+        }
+
+        /* ── SPECIALITIES ── */
+        .spec { background: var(--cream); }
+        .spec-header { text-align: center; margin-bottom: 52px; }
+        .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .spec-card {
+            background: var(--white);
+            border-radius: 10px; padding: 26px;
+            display: -webkit-flex;
+            display: flex;
+            gap: 18px;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+            border: 1px solid rgba(198,96,26,0.12);
+            -webkit-transition: box-shadow .25s, -webkit-transform .25s;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .spec-card:hover { -webkit-transform: translateY(-4px); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,42,40,0.1); }
+        .spec-icon-wrap {
+            width: 72px; height: 72px; -webkit-flex-shrink: 0; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--saffron), var(--saffron-lt));
+            border-radius: 6px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .spec-body h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--stone); margin-bottom: 6px;
+        }
+        .spec-body p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+
+        /* ── VISION STRIP ── */
+        .vision-strip {
+            background: linear-gradient(135deg, var(--stone) 0%, var(--stone-md) 100%);
+            padding: 60px 20px; text-align: center;
+        }
+        .vision-strip .section-label { color: var(--saffron-lt); }
+        .vision-strip .section-heading { color: var(--white); }
+        .vision-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; margin-top: 48px; }
+        .vision-item {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .vision-icon {
+            width: 60px; height: 60px;
+            border: 1px solid rgba(198,96,26,0.4);
+            border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-size: 1.3rem; color: var(--saffron-lt);
+        }
+        .vision-item h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--white); }
+        .vision-item p { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 220px; }
+
+        /* ── TESTIMONIALS SLIDER ── */
+        .testimonials { background: var(--cream); }
+        .testi-header { text-align: center; margin-bottom: 48px; }
+        .testi-slider-wrap {
+            position: relative;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .testi-track-outer {
+            overflow: hidden;
+            border-radius: 14px;
+        }
+        .testi-track {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-transition: -webkit-transform .5s cubic-bezier(.4,0,.2,1);
+            transition: transform .5s cubic-bezier(.4,0,.2,1);
+            will-change: transform;
+        }
+        .testi-card {
+            min-width: 100%;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 40px 40px 32px;
+            border: 1px solid rgba(198,96,26,0.15);
+            box-shadow: 0 6px 40px rgba(44,42,40,0.08);
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+        .testi-quote-icon {
+            font-size: 3rem;
+            color: var(--saffron);
+            line-height: 1;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+        }
+        .testi-stars {
+            color: var(--saffron);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+        }
+        .testi-text {
+            font-size: 0.97rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 28px;
+            font-style: italic;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        .testi-author {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 14px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(198,96,26,0.13);
+        }
+        .testi-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron), var(--saffron-lt));
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--white);
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            border: 2px solid rgba(198,96,26,0.35);
+        }
+        .testi-name { font-size: 0.92rem; font-weight: 600; color: var(--stone); }
+        .testi-location { font-size: 0.78rem; color: var(--muted); }
+        .testi-btn {
+            position: absolute;
+            top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%);
+            width: 44px; height: 44px;
+            background: var(--white);
+            border: 1px solid rgba(198,96,26,0.25);
+            border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--saffron);
+            font-size: 1rem;
+            box-shadow: 0 3px 14px rgba(44,42,40,0.1);
+            -webkit-transition: background .2s, border-color .2s, -webkit-transform .2s;
+            transition: background .2s, border-color .2s, transform .2s;
+            z-index: 2;
+        }
+        .testi-btn:hover { background: var(--saffron); color: var(--white); border-color: var(--saffron); -webkit-transform: translateY(-50%) scale(1.08); transform: translateY(-50%) scale(1.08); }
+        .testi-prev { left: -22px; }
+        .testi-next { right: -22px; }
+        .testi-dots {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 28px;
+        }
+        .testi-dot {
+            width: 8px; height: 8px; border-radius: 8px;
+            background: rgba(198,96,26,0.25);
+            cursor: pointer;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            border: none; padding: 0;
+        }
+        .testi-dot.active { width: 28px; background: var(--saffron); }
+
+        /* ── ORDER ── */
+        .order-section { background: var(--cream-dk); }
+        .order-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; -webkit-align-items: start; align-items: start; }
+        .order-info .section-heading { margin-bottom: 18px; }
+        .order-info p { color: var(--muted); font-size: 0.93rem; line-height: 1.8; margin-bottom: 22px; }
+        .order-perks { list-style: none; }
+        .order-perks li {
+            display: -webkit-flex;
+            display: flex;
+            gap: 12px;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+            padding: 11px 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.9rem; color: var(--text);
+        }
+        .order-perks li:last-child { border: none; }
+        .order-perks li i { color: var(--saffron); margin-top: 3px; font-size: 0.82rem; -webkit-flex-shrink: 0; flex-shrink: 0; }
+        .order-form {
+            background: var(--white); border-radius: 12px; padding: 32px;
+            border: 1px solid rgba(198,96,26,0.15);
+            box-shadow: 0 4px 40px rgba(44,42,40,0.07);
+        }
+        .order-form h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem; font-weight: 600;
+            color: var(--stone); margin-bottom: 22px; text-align: center;
+        }
+        .form-field { margin-bottom: 14px; }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%; padding: 12px 15px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.9rem; color: var(--text);
+            background: var(--cream);
+            border: 1px solid rgba(198,96,26,0.2);
+            border-radius: 6px; outline: none;
+            -webkit-transition: border-color .2s;
+            transition: border-color .2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-field input:focus, .form-field select:focus { border-color: var(--saffron); }
+        .form-field input::-webkit-input-placeholder { color: var(--muted); }
+        .form-field input::placeholder { color: var(--muted); }
+        .form-field select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C6601A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+        }
+        .btn-submit {
+            width: 100%; padding: 14px;
+            background: var(--saffron); color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.82rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            border: none; border-radius: 6px;
+            cursor: pointer;
+            -webkit-transition: background .2s, -webkit-transform .2s;
+            transition: background .2s, transform .2s;
+            margin-top: 6px;
+        }
+        .btn-submit:hover { background: var(--saffron-lt); -webkit-transform: translateY(-2px); transform: translateY(-2px); }
+
+        /* ── FOOTER ── */
+        .footer { background: var(--stone); color: rgba(255,255,255,0.7); padding: 60px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 44px; }
+        .footer-col h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem; font-weight: 600;
+            color: var(--white); margin-bottom: 18px;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .footer-brand {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 10px; margin-bottom: 14px;
+        }
+        .footer-brand img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--saffron); -webkit-object-fit: cover; object-fit: cover; }
+        .footer-brand span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--saffron-lt); letter-spacing: 3px;
+        }
+        .footer-col p { font-size: 0.85rem; line-height: 1.8; margin-bottom: 18px; }
+        .footer-contact-item {
+            display: -webkit-flex;
+            display: flex;
+            gap: 10px;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+            font-size: 0.85rem; margin-bottom: 11px;
+        }
+        .footer-contact-item i { color: var(--saffron-lt); margin-top: 3px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+        .footer-hours dt { font-size: 0.8rem; font-weight: 500; color: var(--white); letter-spacing: 1px; text-transform: uppercase; margin-top: 10px; }
+        .footer-hours dd { font-size: 0.85rem; margin: 2px 0 0 0; }
+        .social-links {
+            display: -webkit-flex;
+            display: flex;
+            gap: 10px; margin-top: 4px;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+        .social-link {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(198,96,26,0.3); border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.82rem;
+            -webkit-transition: background .2s, border-color .2s, color .2s;
+            transition: background .2s, border-color .2s, color .2s;
+        }
+        .social-link:hover { background: var(--saffron); border-color: var(--saffron); color: var(--white); }
+        .footer-sub-form { display: -webkit-flex; display: flex; gap: 0; margin-top: 12px; }
+        .footer-sub-form input {
+            -webkit-flex: 1;
+            flex: 1; padding: 11px 14px;
+            font-family: 'Jost', sans-serif; font-size: 0.84rem; color: var(--white);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(198,96,26,0.25); border-right: none;
+            border-radius: 4px 0 0 4px; outline: none; min-width: 0;
+        }
+        .footer-sub-form input::-webkit-input-placeholder { color: rgba(255,255,255,0.4); }
+        .footer-sub-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .footer-sub-form button {
+            padding: 11px 16px; background: var(--saffron); border: none;
+            color: var(--white); font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; border-radius: 0 4px 4px 0;
+            -webkit-transition: background .2s;
+            transition: background .2s;
+            white-space: nowrap;
+        }
+        .footer-sub-form button:hover { background: var(--saffron-lt); }
+        .footer-bottom {
+            margin-top: 44px; padding: 18px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 10px; font-size: 0.8rem;
+        }
+        .footer-bottom span { color: var(--saffron-lt); }
+
+        /* ── BACK TO TOP ── */
+        .back-top {
+            position: fixed; bottom: 22px; right: 22px; z-index: 900;
+            width: 42px; height: 42px;
+            background: var(--saffron); color: var(--white);
+            border: none; border-radius: 50%;
+            display: none;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            cursor: pointer; font-size: 1rem;
+            box-shadow: 0 4px 16px rgba(198,96,26,0.4);
+            -webkit-transition: -webkit-transform .2s, background .2s;
+            transition: transform .2s, background .2s;
+        }
+        .back-top:hover { background: var(--saffron-lt); -webkit-transform: translateY(-3px); transform: translateY(-3px); }
+        .back-top.visible { display: -webkit-flex; display: flex; }
+
+        /* ── ORDER POPUP ── */
+        #em-popup {
+            position: fixed;
+            bottom: 20px; left: 16px;
+            z-index: 9999;
+            font-family: 'Jost', sans-serif;
+        }
+        .em-toast {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 12px;
+            background: #ffffff;
+            border: 1px solid rgba(198,96,26,0.25);
+            border-left: 4px solid #C6601A;
+            border-radius: 10px;
+            padding: 12px 32px 12px 12px;
+            box-shadow: 0 8px 32px rgba(44,42,40,0.18);
+            width: 290px;
+            max-width: 88vw;
+            position: relative;
+            -webkit-animation: emUp .45s cubic-bezier(.22,.68,0,1.2) forwards;
+            animation: emUp .45s cubic-bezier(.22,.68,0,1.2) forwards;
+        }
+        .em-toast.em-hide {
+            opacity: 0;
+            -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+            -webkit-transition: opacity .4s, -webkit-transform .4s;
+            transition: opacity .4s, transform .4s;
+        }
+        @-webkit-keyframes emUp {
+            from { opacity: 0; -webkit-transform: translateY(24px); transform: translateY(24px); }
+            to   { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        @keyframes emUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .em-av {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: linear-gradient(135deg, #C6601A, #E8923D);
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-size: 14px; font-weight: 600;
+            color: #ffffff; -webkit-flex-shrink: 0; flex-shrink: 0;
+            border: 2px solid rgba(198,96,26,0.4);
+        }
+        .em-body { -webkit-flex: 1; flex: 1; min-width: 0; }
+        .em-name { font-size: 13px; font-weight: 600; color: #2C2A28; margin-bottom: 3px; }
+        .em-msg { font-size: 11.5px; color: #796F64; font-weight: 400; margin-bottom: 3px; line-height: 1.4; }
+        .em-msg strong { font-weight: 600; color: #403D3A; }
+        .em-time {
+            font-size: 10.5px; color: #aaa;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            gap: 5px;
+        }
+        .em-time::before {
+            content: '';
+            display: inline-block; width: 6px; height: 6px;
+            background: #4caf7d; border-radius: 50%;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+        }
+        .em-close {
+            position: absolute; top: 7px; right: 9px;
+            background: none; border: none;
+            font-size: 13px; color: #bbb;
+            cursor: pointer; line-height: 1; padding: 2px 4px;
+            -webkit-transition: color .2s;
+            transition: color .2s;
+        }
+        .em-close:hover { color: #C6601A; }
+
+        /* ════════════════════════════════════════
+           RESPONSIVE BREAKPOINTS — ALL DEVICES
+        ════════════════════════════════════════ */
+
+        @media (min-width: 1280px) {
+            .gallery-track-outer { height: 580px; }
+        }
+
+        @media (max-width: 1100px) {
+            .about-grid { grid-template-columns: 1fr 320px 1fr; gap: 36px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+            .gallery-track-outer { height: 460px; }
+            .gallery-prev { left: -14px; }
+            .gallery-next { right: -14px; }
+        }
+
+        @media (max-width: 960px) {
+            .gallery-track-outer { height: 380px; }
+            .gallery-prev { left: -14px; }
+            .gallery-next { right: -14px; }
+            .gallery-btn { width: 40px; height: 40px; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hamburger { display: -webkit-flex; display: flex; }
+            .section-pad { padding: 60px 0; }
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .about-img-wrap { order: -1; max-width: 480px; margin: 0 auto; }
+            .about-img-wrap img { height: 380px; }
+            .about-img-badge { display: none; }
+            .testi-slider-wrap { padding: 0 8px; }
+            .order-wrapper { grid-template-columns: 1fr; gap: 36px; }
+            .vision-grid { grid-template-columns: repeat(3,1fr); gap: 24px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-track-outer { height: 320px; }
+            .gallery-prev { left: 8px; }
+            .gallery-next { right: 8px; }
+            .gallery-btn {
+                width: 38px; height: 38px; font-size: 0.85rem;
+                background: rgba(44,42,40,0.75);
+                color: var(--saffron-lt);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; }
+            .section-pad { padding: 48px 0; }
+            .hero-content { padding: 90px 16px 70px; }
+            .hero-cta { -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: center; align-items: center; gap: 10px; }
+            .btn-gold, .btn-outline { width: 100%; max-width: 260px; text-align: center; padding: 14px 24px; }
+            .about-grid { gap: 28px; }
+            .about-img-wrap { max-width: 100%; }
+            .about-img-wrap img { height: 300px; }
+            .spec-grid { grid-template-columns: 1fr; gap: 16px; }
+            .spec-card { padding: 20px; gap: 14px; }
+            .spec-icon-wrap { width: 60px; height: 60px; font-size: 1.4rem; }
+            .vision-grid { grid-template-columns: 1fr; gap: 24px; }
+            .vision-item p { max-width: 100%; }
+            .testi-slider-wrap { padding: 0 4px; }
+            .testi-card { padding: 28px 20px 24px; }
+            .testi-prev { left: -14px; }
+            .testi-next { right: -14px; }
+            .testi-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+            .order-form { padding: 24px 18px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .footer-bottom { -webkit-flex-direction: column; flex-direction: column; text-align: center; gap: 8px; }
+            #em-popup { left: 12px; bottom: 12px; }
+            .em-toast { width: calc(100vw - 24px); max-width: 320px; }
+
+            .gallery-track-outer { height: 240px; border-radius: 10px; }
+            .gallery-prev { left: 8px; }
+            .gallery-next { right: 8px; }
+            .gallery-btn {
+                width: 36px; height: 36px; font-size: 0.82rem;
+                background: rgba(44,42,40,0.7);
+                color: var(--saffron-lt);
+            }
+            .gallery-page { gap: 4px; }
+            .gallery-slide-caption { padding: 14px 12px 10px; }
+            .gallery-slide-caption span { font-size: 0.7rem; letter-spacing: 1.5px; }
+            .gallery-slide-caption p { display: none; }
+        }
+
+        @media (max-width: 430px) {
+            .gallery-track-outer { height: 210px; }
+            .brand-name { font-size: 1.15rem; letter-spacing: 2px; }
+        }
+
+        @media (max-width: 380px) {
+            .brand-name { font-size: 1.1rem; letter-spacing: 2px; }
+            .hero-title { font-size: 2.4rem; }
+            .about-img-wrap img { height: 260px; }
+            .section-heading { font-size: 1.75rem; }
+            .gallery-track-outer { height: 180px; }
+        }
+
+        @media only screen and (max-width: 430px) and (-webkit-min-device-pixel-ratio: 2) {
+            .gallery-track-outer { height: 220px; }
+            .gallery-slide img { font-size: 0; color: transparent; }
+        }
+
+        @media only screen and (max-width: 390px) and (-webkit-min-device-pixel-ratio: 2) {
+            .gallery-track-outer { height: 200px; }
+        }
+
+        @media only screen and (max-width: 375px) and (-webkit-min-device-pixel-ratio: 2) {
+            .gallery-track-outer { height: 185px; }
+            .section-heading { font-size: 1.7rem; }
+        }
+
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            #em-popup {
+                bottom: calc(20px + env(safe-area-inset-bottom));
+            }
+            .back-top {
+                bottom: calc(22px + env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <a href="#" class="navbar-brand">
+        <img src="{% static 'homepage/img/logo.jpeg' %}" alt="Ecomonks Logo" onerror="this.onerror=null;this.src='https://placehold.co/40x40/C6601A/F7F4EF?text=EC'">
+        <span class="brand-name">Ecomonks</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#speciality">Service</a></li>
+        <li><a href="#order">Products</a></li>
+        <li><a href="#footer">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#speciality">Service</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#order">Order</a>
+    <a href="#footer">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-slides">
+        <div class="hero-slide slide-1 active" style="background-image:url('{% static "homepage/img/vb1.jpeg" %}')"></div>
+        <div class="hero-slide slide-2" style="background-image:url('{% static "homepage/img/vb2.jpeg" %}')"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">✦ Sacred Vibhoothi · Holy Ash ✦</div>
+        <h1 class="hero-title">Pure <span>Vibhoothi</span><br>for the Divine</h1>
+        <p class="hero-subtitle">Temple Grade Holy Ash · Sacred for Tilak, Pooja, Yajna &amp; Spiritual Practice</p>
+        <div class="hero-cta">
+            <a href="#order" class="btn-gold">Order Now</a>
+            <a href="#about" class="btn-outline">Our Story</a>
+        </div>
+    </div>
+    <div class="slide-dots">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-heading">Sacred Since<br><em>2025</em></h2>
+                <p style="margin-top:18px">Ecomonks Sacred Vibhoothi is carefully prepared using traditional methods to deliver pure, fine-textured holy ash for daily tilak, pooja, yajna and meditation practice.</p>
+                <p>Made from natural ingredients following age-old temple traditions, our Vibhoothi carries no artificial additives — ideal for forehead application, havan, and offering at the altar.</p>
+                <a href="#order" class="btn-gold" style="margin-top:16px; display:inline-block;">Make an Order</a>
+            </div>
+            <div class="about-img-wrap">
+                <img src="{% static 'homepage/img/_vb01.png' %}" alt="Sacred Vibhoothi Holy Ash" onerror="this.onerror=null;this.src='https://placehold.co/400x460/C6601A/F7F4EF?text=Sacred+Vibhoothi'">
+                <div class="about-img-badge">
+                    <span class="badge-year">2025</span>
+                    <span class="badge-text">Est.</span>
+                </div>
+            </div>
+            <div>
+                <div class="section-label">Our Vision</div>
+                <h2 class="section-heading">Why <em>Choose</em><br>Ecomonks?</h2>
+                <ul class="checklist" style="margin-top:22px">
+                    <li><i class="fa fa-check-circle"></i>100% Pure Sacred Vibhoothi</li>
+                    <li><i class="fa fa-check-circle"></i>Temple Grade Holy Ash Quality</li>
+                    <li><i class="fa fa-check-circle"></i>Natural Ingredients Only</li>
+                    <li><i class="fa fa-check-circle"></i>No Artificial Additives</li>
+                    <li><i class="fa fa-check-circle"></i>Fine, Smooth Texture</li>
+                    <li><i class="fa fa-check-circle"></i>Ideal for Daily Tilak &amp; Pooja</li>
+                    <li><i class="fa fa-check-circle"></i>Spiritual &amp; Ritual Use</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCT IMAGE GALLERY -->
+<section class="gallery-section" id="gallery">
+    <div class="container">
+        <div class="gallery-header">
+            <div class="section-label">Product Gallery</div>
+            <h2 class="section-heading">Pure <em>Vibhoothi</em> — Up Close</h2>
+        </div>
+        <div class="gallery-carousel-wrap">
+
+            <button class="gallery-btn gallery-prev" id="galleryPrev" aria-label="Previous">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+
+            <div class="gallery-track-outer">
+                <div class="gallery-track" id="galleryTrack">
+
+                    <!-- Page 1 -->
+                    <div class="gallery-page">
+                        <div class="gallery-slide">
+                            <img src="{% static 'homepage/img/vbimg3.jpeg' %}" alt="Pure Sacred Vibhoothi" loading="eager" onerror="this.onerror=null;this.src='https://placehold.co/480x560/C6601A/F7F4EF?text=Pure+Vibhoothi'">
+                            <div class="gallery-slide-caption">
+                                <span>Pure Vibhoothi</span>
+                                <p>100% Natural Holy Ash</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="{% static 'homepage/img/vbimg2.jpeg' %}" alt="Temple Grade Vibhoothi" loading="eager" onerror="this.onerror=null;this.src='https://placehold.co/480x560/403D3A/E8923D?text=Temple+Grade'">
+                            <div class="gallery-slide-caption">
+                                <span>Temple Grade</span>
+                                <p>Fine Texture for Daily Tilak</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page 2 -->
+                    <div class="gallery-page">
+                        <div class="gallery-slide">
+                            <img src="{% static 'homepage/img/vbimg1.jpeg' %}" alt="Vibhoothi for Pooja and Tilak" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/480x560/C6601A/F7F4EF?text=Pooja+%26+Tilak'">
+                            <div class="gallery-slide-caption">
+                                <span>For Pooja &amp; Tilak</span>
+                                <p>Sacred Forehead Application</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="{% static 'homepage/img/vbimg4.jpeg' %}" alt="Vibhoothi Pack" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/480x560/403D3A/E8923D?text=Natural+%26+Pure'">
+                            <div class="gallery-slide-caption">
+                                <span>Natural &amp; Pure</span>
+                                <p>No Artificial Additives</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button class="gallery-btn gallery-next" id="galleryNext" aria-label="Next">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+
+            <div class="gallery-dots" id="galleryDots"></div>
+            <div class="gallery-counter" id="galleryCounter">1 / 2</div>
+
+        </div>
+    </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos-gallery-section" id="videos">
+    <div class="container">
+        <div class="video-header">
+            <div class="section-label">Watch Our Videos</div>
+            <h2 class="section-heading">Explore <em>Divine Moments</em></h2>
+            <p class="video-subtitle">Witness the purity and traditional preparation of sacred Vibhoothi</p>
+        </div>
+        <div class="videos-slider-wrapper">
+            <button class="scroll-btn left-btn" id="scrollLeft">&#10094;</button>
+            <div class="videos-scroll" id="videosScroll">
+                <div class="video-card">
+                    <div class="youtube-embed">
+                        <iframe width="100%" height="560" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" title="Pure Sacred Vibhoothi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title"><h4>Pure Sacred Vibhoothi</h4><p>Temple Grade Holy Ash</p></div>
+                </div>
+                <div class="video-card">
+                    <div class="youtube-embed">
+                        <iframe width="100%" height="560" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" title="Traditional Preparation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title"><h4>Traditional Preparation</h4><p>Temple Quality</p></div>
+                </div>
+                <div class="video-card">
+                    <div class="youtube-embed">
+                        <iframe width="100%" height="560" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" title="Daily Tilak Ritual" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title"><h4>Daily Tilak Ritual</h4><p>Sacred Application</p></div>
+                </div>
+                <div class="video-card">
+                    <div class="youtube-embed">
+                        <iframe width="100%" height="560" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_4" title="Spiritual Essence" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title"><h4>Spiritual Essence</h4><p>Pure Natural Product</p></div>
+                </div>
+                <div class="video-card">
+                    <div class="youtube-embed">
+                        <iframe width="100%" height="560" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_5" title="Yajna &amp; Havan Use" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title"><h4>Yajna &amp; Havan Use</h4><p>Authentic Temple Vibhoothi</p></div>
+                </div>
+            </div>
+            <button class="scroll-btn right-btn" id="scrollRight">&#10095;</button>
+        </div>
+    </div>
+</section>
+
+<style>
+.videos-gallery-section { padding: 80px 0; background: #fbf7f0; overflow: hidden; }
+.video-header { text-align: center; margin-bottom: 45px; }
+.video-subtitle { color: #777; margin-top: 10px; }
+.videos-slider-wrapper { position: relative; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
+.videos-scroll {
+    display: -webkit-flex; display: flex;
+    gap: 25px; overflow-x: auto;
+    scroll-behavior: smooth; scrollbar-width: none;
+    -ms-overflow-style: none; width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+.videos-scroll::-webkit-scrollbar { display: none; }
+.video-card { min-width: 320px; max-width: 320px; -webkit-flex: 0 0 auto; flex: 0 0 auto; }
+.youtube-embed {
+    position: relative; width: 100%; height: 560px;
+    border-radius: 22px; overflow: hidden; background: #000;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+.youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.video-title { text-align: center; margin-top: 14px; }
+.video-title h4 { font-size: 20px; color: #261c12; margin-bottom: 5px; }
+.video-title p { color: #777; font-size: 14px; }
+.scroll-btn {
+    position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%);
+    width: 50px; height: 50px; border: none; border-radius: 50%;
+    background: #C6601A; color: white; font-size: 24px; cursor: pointer;
+    z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    -webkit-transition: 0.3s; transition: 0.3s;
+}
+.scroll-btn:hover { background: #93602A; -webkit-transform: translateY(-50%) scale(1.08); transform: translateY(-50%) scale(1.08); }
+.left-btn { left: -10px; }
+.right-btn { right: -10px; }
+@media(max-width: 768px) {
+    .video-card { min-width: 240px; max-width: 240px; }
+    .youtube-embed { height: 430px; }
+    .scroll-btn { width: 40px; height: 40px; font-size: 18px; }
+}
+@media(max-width: 480px) {
+    .video-card { min-width: 200px; max-width: 200px; }
+    .youtube-embed { height: 355px; }
+}
+</style>
+
+<!-- SPECIALITY -->
+<section class="spec section-pad" id="speciality">
+    <div class="container">
+        <div class="spec-header">
+            <div class="section-label">Our Speciality</div>
+            <h2 class="section-heading">Pure &amp; <em>Sacred</em> Vibhoothi</h2>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🪔</div>
+                <div class="spec-body">
+                    <h4>Premium Quality Holy Ash</h4>
+                    <p>Carefully prepared sacred Vibhoothi made with traditional methods to ensure purity, fine texture, and authenticity in every pack.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🌿</div>
+                <div class="spec-body">
+                    <h4>Traditional Purity</h4>
+                    <p>Our Vibhoothi preserves age-old temple traditions and unmatched purity, trusted by generations for daily spiritual practice.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">✨</div>
+                <div class="spec-body">
+                    <h4>Natural Ingredients</h4>
+                    <p>Made from high-quality natural ingredients, offering fine smooth texture and premium quality you can trust for daily tilak.</p>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon-wrap">🏆</div>
+                <div class="spec-body">
+                    <h4>Trusted Since 2025</h4>
+                    <p>With a commitment to excellence and customer trust, we provide authentic sacred Vibhoothi with uncompromised quality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VISION STRIP -->
+<section class="vision-strip">
+    <div class="container">
+        <div class="section-label">Our Promise</div>
+        <h2 class="section-heading" style="color:var(--white)">Pure · <em>Plant-Based</em> · Brilliant</h2>
+        <div class="vision-grid">
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-leaf"></i></div>
+                <h5>Plant-Based</h5>
+                <p>No harsh chemicals. Made with vegan, eco-friendly ingredients that are safe for daily use.</p>
+            </div>
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-truck"></i></div>
+                <h5>Fast Delivery</h5>
+                <p>Doorstep delivery across Kerala and India, securely packed and ready to use.</p>
+            </div>
+            <div class="vision-item">
+                <div class="vision-icon"><i class="fa fa-award"></i></div>
+                <h5>Temple Grade</h5>
+                <p>Trusted formula for brass, copper and temple metals — instantly restores brilliance.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-pad" id="testimonials">
+    <div class="container">
+        <div class="testi-header">
+            <div class="section-label">Customer Reviews</div>
+            <h2 class="section-heading">What Our <em>Customers</em> Say</h2>
+        </div>
+        <div class="testi-slider-wrap">
+            <button class="testi-btn testi-prev" id="testiPrev" aria-label="Previous review"><i class="fa fa-chevron-left"></i></button>
+            <div class="testi-track-outer">
+                <div class="testi-track" id="testiTrack">
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">Our brass idols look brand new! The tarnish came off so easily and the shine has lasted for weeks. No harsh smell either, which I really appreciate.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">Pr</div>
+                            <div><div class="testi-name">Priya Menon</div><div class="testi-location">Thrissur, Kerala</div></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">Excellent cleaner for our temple's copper vessels. Effective on years of oxidation without scratching the metal. Truly a temple-grade product.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">Ra</div>
+                            <div><div class="testi-name">Ramesh Nair</div><div class="testi-location">Kochi, Kerala</div></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">I love that it's plant-based and non-toxic — safe to use around the kids. The 200ml bottle goes a long way, and the results are instant.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">Su</div>
+                            <div><div class="testi-name">Sudha Krishnan</div><div class="testi-location">Chennai, Tamil Nadu</div></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">We use this for cleaning all our pooja utensils. Restores brilliance instantly and the eco-friendly formula gives us peace of mind. Will order again.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">Ar</div>
+                            <div><div class="testi-name">Arjun Varma</div><div class="testi-location">Bangalore, Karnataka</div></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">Best brass cleaner I have used in years. No strong chemical smell, no residue, and our diyas shine like never before. Highly recommend for temple use.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">La</div>
+                            <div><div class="testi-name">Lakshmi Pillai</div><div class="testi-location">Palakkad, Kerala</div></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote-icon">"</div>
+                        <div class="testi-stars">★★★★★</div>
+                        <p class="testi-text">Superb product at a great price. Gentle on the hands, effective on stubborn stains, and the vegan certification was an added plus for our household.</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar">De</div>
+                            <div><div class="testi-name">Deepa Iyer</div><div class="testi-location">Coimbatore, Tamil Nadu</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="testi-btn testi-next" id="testiNext" aria-label="Next review"><i class="fa fa-chevron-right"></i></button>
+            <div class="testi-dots" id="testiDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER -->
+<section class="order-section section-pad" id="order">
+    <div class="container">
+        <div class="order-wrapper">
+            <div class="order-info">
+                <div class="section-label">Buy Temple Care Cleaner</div>
+                <h2 class="section-heading">Place Your<br><em>Order Today</em></h2>
+                <p>Instant brass and copper cleaner made with plant-based, non-toxic ingredients. Trusted for restoring brilliance to idols, diyas, utensils and decorative pieces.</p>
+                <ul class="order-perks">
+                    <li><i class="fa fa-circle-check"></i> Plant-Based Formula – non-toxic, vegan certified</li>
+                    <li><i class="fa fa-circle-check"></i> Instantly removes tarnish, oxidation &amp; stains</li>
+                    <li><i class="fa fa-circle-check"></i> Fast delivery available across India</li>
+                    <li><i class="fa fa-circle-check"></i> Available in 200ml bottle</li>
+                </ul>
+            </div>
+            <div class="order-form">
+                <h3>Order Now</h3>
+                <form method="post" action="order_post/">
+                    {% csrf_token %}
+                    <div class="form-field"><input type="text" name="name" placeholder="Your Full Name" required></div>
+                    <div class="form-field"><input type="email" name="email" placeholder="Email Address" required></div>
+                    <div class="form-field"><input type="tel" name="phone" placeholder="Contact Number" required></div>
+                    <div class="form-field"><input type="text" name="address" placeholder="Delivery Address" required></div>
+                    <div class="form-field">
+                        <select name="quantity" required>
+                            <option value="" disabled selected>Select Quantity</option>
+                            <option value="50g">50g Bottle</option>
+                            <option value="100g">100g Bottle</option>
+                            <option value="200g">200g Bottle</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Buy Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <img src="{% static 'homepage/img/logo.jpeg' %}" alt="Logo" onerror="this.onerror=null;this.src='https://placehold.co/40x40/C6601A/F7F4EF?text=EC'">
+                    <span>ECOMONKS</span>
+                </div>
+                <p>Plant-based, non-toxic brass and copper cleaner crafted for temples and trusted for homes.</p>
+                <div class="social-links">
+                    <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a class="social-link" href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <div class="footer-contact-item"><i class="fa fa-map-marker-alt"></i><span>Yathisha Bliss, Room No.3/308D/1, Greeshma Oil Mills, Thrissur, Kerala 680 010</span></div>
+                <div class="footer-contact-item"><i class="fa fa-phone-alt"></i><span>+91 98457 36584</span></div>
+                <div class="footer-contact-item"><i class="fa fa-envelope"></i><span>hello@yathisha.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4>Working Hours</h4>
+                <dl class="footer-hours">
+                    <dt>Monday – Saturday</dt><dd>24*7 Hours</dd>
+                    <dt>Sunday</dt><dd>Also available</dd>
+                </dl>
+            </div>
+            <div class="footer-col">
+                <h4>Subscribe</h4>
+                <p>Get updates, offers, and the latest product information straight to your inbox.</p>
+                <form method="POST" action="emailenquiry/">
+                    {% csrf_token %}
+                    <div class="footer-sub-form">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit">Go</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2025 <span>ECOMONKS</span>. All Rights Reserved.</p>
+            <p>Designed with ❤️ for Sacred Shine Temple Care</p>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+    <i class="fa fa-angle-up"></i>
+</button>
+
+<div id="em-popup"></div>
+
+<script>
+    /* Navbar scroll */
+    var navbar  = document.getElementById('navbar');
+    var backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', function() {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+        backTop.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+    backTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* Hamburger */
+    var ham       = document.getElementById('hamburger');
+    var mobileNav = document.getElementById('mobileNav');
+    ham.addEventListener('click', function() {
+        ham.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            ham.classList.remove('open');
+            mobileNav.classList.remove('open');
+        });
+    });
+
+    /* Hero slideshow */
+    var slides     = document.querySelectorAll('.hero-slide');
+    var heroDotsEl = document.querySelectorAll('.dot');
+    var heroCur    = 0;
+    var slideTimer = null;
+
+    slides.forEach(function(s){ s.style.transition = 'none'; });
+    requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+            slides.forEach(function(s){ s.style.transition = ''; });
+        });
+    });
+
+    function heroGoTo(n) {
+        slides[heroCur].classList.remove('active');
+        heroDotsEl[heroCur].classList.remove('active');
+        heroCur = (n + slides.length) % slides.length;
+        slides[heroCur].classList.add('active');
+        heroDotsEl[heroCur].classList.add('active');
+    }
+    heroDotsEl.forEach(function(d) {
+        d.addEventListener('click', function() {
+            clearInterval(slideTimer);
+            heroGoTo(+d.dataset.slide);
+            slideTimer = setInterval(function(){ heroGoTo(heroCur + 1); }, 5000);
+        });
+    });
+    slideTimer = setInterval(function(){ heroGoTo(heroCur + 1); }, 5000);
+
+    /* ── GALLERY CAROUSEL — SAFARI FIXED ── */
+    (function(){
+        var track    = document.getElementById('galleryTrack');
+        var dotsWrap = document.getElementById('galleryDots');
+        var counter  = document.getElementById('galleryCounter');
+        var pages    = track.querySelectorAll('.gallery-page');
+        var total    = pages.length;
+        var cur      = 0;
+        var autoTimer = null;
+
+        for (var i = 0; i < total; i++) {
+            (function(idx){
+                var d = document.createElement('button');
+                d.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+                d.setAttribute('aria-label', 'Page ' + (idx + 1));
+                d.addEventListener('click', function(){ goTo(idx); resetAuto(); });
+                dotsWrap.appendChild(d);
+            })(i);
+        }
+
+        function getDots(){ return dotsWrap.querySelectorAll('.gallery-dot'); }
+
+        function goTo(n) {
+            cur = (n + total) % total;
+            track.style.webkitTransform = 'translateX(-' + (cur * 100) + '%)';
+            track.style.transform       = 'translateX(-' + (cur * 100) + '%)';
+            getDots().forEach(function(d, i){ d.classList.toggle('active', i === cur); });
+            counter.textContent = (cur + 1) + ' / ' + total;
+        }
+
+        function resetAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function(){ goTo(cur + 1); }, 4000);
+        }
+
+        document.getElementById('galleryPrev').addEventListener('click', function(){ goTo(cur - 1); resetAuto(); });
+        document.getElementById('galleryNext').addEventListener('click', function(){ goTo(cur + 1); resetAuto(); });
+
+        var startX = 0;
+        track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', function(e){
+            var diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) { goTo(diff > 0 ? cur + 1 : cur - 1); resetAuto(); }
+        });
+
+        resetAuto();
+    })();
+
+    /* Testimonial Slider */
+    (function(){
+        var track    = document.getElementById('testiTrack');
+        var dotsWrap = document.getElementById('testiDots');
+        var cards    = track.querySelectorAll('.testi-card');
+        var total    = cards.length;
+        var cur      = 0;
+        var autoTimer = null;
+
+        for (var i = 0; i < total; i++) {
+            (function(idx){
+                var d = document.createElement('button');
+                d.className = 'testi-dot' + (idx === 0 ? ' active' : '');
+                d.setAttribute('aria-label', 'Review ' + (idx + 1));
+                d.addEventListener('click', function(){ goSlide(idx); resetAuto(); });
+                dotsWrap.appendChild(d);
+            })(i);
+        }
+
+        function getDots(){ return dotsWrap.querySelectorAll('.testi-dot'); }
+
+        function goSlide(n) {
+            cur = (n + total) % total;
+            track.style.webkitTransform = 'translateX(-' + (cur * 100) + '%)';
+            track.style.transform       = 'translateX(-' + (cur * 100) + '%)';
+            getDots().forEach(function(d, i){ d.classList.toggle('active', i === cur); });
+        }
+
+        function resetAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function(){ goSlide(cur + 1); }, 5000);
+        }
+
+        document.getElementById('testiPrev').addEventListener('click', function(){ goSlide(cur - 1); resetAuto(); });
+        document.getElementById('testiNext').addEventListener('click', function(){ goSlide(cur + 1); resetAuto(); });
+
+        var startX = 0;
+        track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', function(e){
+            var diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) { goSlide(diff > 0 ? cur + 1 : cur - 1); resetAuto(); }
+        });
+
+        resetAuto();
+    })();
+
+    /* Video scroll buttons */
+    var videosScroll = document.getElementById('videosScroll');
+    document.getElementById('scrollRight').addEventListener('click', function(){
+        videosScroll.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+    document.getElementById('scrollLeft').addEventListener('click', function(){
+        videosScroll.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+
+    /* Smooth scroll anchors */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+            var href = a.getAttribute('href');
+            if (href === '#') return;
+            var target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                var top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    /* Social Proof Popup */
+    (function(){
+        var names = ["Suresh Kumar","Dr.Gpinadh","Srenivas Menon","Adv.Arunkumar","Lakshmi","Sheethal Menon","Karthika Roy","Priya ps",
+                     "Rahul Raj","Nidhi P Nambiar","Laljose","Kavya Menon","Dr.Deepa p","Arjun","Meera","Prof.Ravindran",
+                     "Anand Nair","Divya ps","Santhosh","Lakshmi"];
+        var packs = ["50g Bottle","100g Bottle","200g Bottle"];
+        var locs  = ["Thrissur","Kochi","Palakkad","Kozhikode","Trivandrum","Kannur",
+                     "Ernakulam","Chennai","Bangalore","Mumbai","Hyderabad","Pune","Dubai"];
+        var times = ["just now","1 minute ago","2 minutes ago","3 minutes ago","5 minutes ago","moments ago"];
+        var idx   = 0;
+        var wrap  = document.getElementById('em-popup');
+
+        function showPopup() {
+            var name = names[idx % names.length];
+            var pack = packs[Math.floor(Math.random() * packs.length)];
+            var loc  = locs[Math.floor(Math.random() * locs.length)];
+            var time = times[Math.floor(Math.random() * times.length)];
+            idx++;
+            var t = document.createElement('div');
+            t.className = 'em-toast';
+            t.innerHTML =
+                '<div class="em-av">' + name.slice(0,2).toUpperCase() + '</div>' +
+                '<div class="em-body">' +
+                  '<div class="em-name">' + name + ' from ' + loc + '</div>' +
+                  '<div class="em-msg">🛒 Just ordered <strong>' + pack + '</strong> of Temple Care Cleaner</div>' +
+                  '<div class="em-time">' + time + '</div>' +
+                '</div>' +
+                '<button class="em-close" aria-label="Close">✕</button>';
+            t.querySelector('.em-close').addEventListener('click', function(){ dismiss(t); });
+            wrap.innerHTML = '';
+            wrap.appendChild(t);
+            setTimeout(function(){ dismiss(t); }, 5500);
+        }
+
+        function dismiss(el) {
+            if (!el || !el.parentElement) return;
+            el.classList.add('em-hide');
+            setTimeout(function(){ if (el && el.parentElement) el.remove(); }, 420);
+        }
+
+        setTimeout(function loop() {
+            showPopup();
+            setTimeout(loop, 15000);
+        }, 3000);
+    })();
+</script>
+</body>
+</html>
