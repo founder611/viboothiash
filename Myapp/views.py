@@ -67,12 +67,12 @@ def raz_pay(request, amount):
 # ==========================================
 # SAVE ORDER TO SUPABASE - FIXED VERSION
 # ==========================================
-def save_order_to_supabase(name, email, phone, address, quantity, payment_id):
+def save_order_to_supabase(name, email, phone, address, quantity, payment_id, amount):
     """Save order to Supabase database"""
     try:
         # Your Supabase credentials - DIRECT values
-        supabase_url = "https://fgikrpxjaskyduewekiu.supabase.co"
-        supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZnaWtycHhqYXNreWR1ZXdla2l1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNTg3MDUsImV4cCI6MjA5NTkzNDcwNX0.kyIphJzU-gNIEvA2rXAWAKy6lC4Vur362U2lFWm6BtI"
+        supabase_url = "https://uuzumstwtrgzmeqgkjrj.supabase.co"
+        supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1enVtc3R3dHJnem1lcWdranJqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTUwODA1MSwiZXhwIjoyMDk3MDg0MDUxfQ.lZlydZ_sVQhcBteBBX1mucA_ZbmlkOS7yUVO8gYCV6U"
         
         # Create client
         supabase = create_client(supabase_url, supabase_key)
@@ -93,6 +93,7 @@ def save_order_to_supabase(name, email, phone, address, quantity, payment_id):
             "email": email,
             "phone": phone,
             "address": address,
+            "amount": amount,
             "quantity": quantity,
             "payment_id": payment_id
         }
@@ -149,6 +150,13 @@ def userpayment_post(request):
         address = request.POST.get('address')
         quantity = request.POST.get('quantity')
         payment_id = request.POST.get('payment_id')
+        amount = request.POST.get('amount')
+
+        try:
+            amount = float(amount) / 100   # Paisa → Rupees
+        except:
+            amount = 0
+
         
         if not email:
             return HttpResponse("Email not found")
@@ -179,6 +187,7 @@ def userpayment_post(request):
             <p><b>📧 Email:</b> {email}</p>
             <p><b>📞 Phone:</b> {phone}</p>
             <p><b>📍 Address:</b> {address}</p>
+            <p><b>💰 Amount:</b> {amount}</p>
             <p><b>📦 Quantity:</b> {quantity}</p>
             <p><b>💳 Payment ID:</b> {payment_id}</p>
             </div>
@@ -194,6 +203,7 @@ def userpayment_post(request):
             <p><b>Customer:</b> {name}</p>
             <p><b>Email:</b> {email}</p>
             <p><b>Phone:</b> {phone}</p>
+            <p><b>Amount:</b> {amount}</p>
             <p><b>Address:</b> {address}</p>
             <p><b>Quantity:</b> {quantity}</p>
             <p><b>Payment ID:</b> {payment_id}</p>
@@ -231,7 +241,7 @@ def userpayment_post(request):
         
         # 2. Save to Supabase (non-critical)
         try:
-            save_order_to_supabase(name, email, phone, address, quantity, payment_id)
+            save_order_to_supabase(name, email, phone, address, quantity, payment_id, amount)
         except Exception as e:
             print(f"❌ Supabase save error: {str(e)}")
         
