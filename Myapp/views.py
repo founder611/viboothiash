@@ -79,7 +79,7 @@ def save_order_to_supabase(name, email, phone, address, quantity, payment_id, am
         
         # Get next order number by counting existing orders
         try:
-            response = supabase.table('orders').select('id', count='exact').execute()
+            response = supabase.table('vibuthi_orders').select('id', count='exact').execute()
             order_no = response.count + 1 if response.count else 1
         except Exception as e:
             print(f"Could not get count: {e}")
@@ -95,11 +95,13 @@ def save_order_to_supabase(name, email, phone, address, quantity, payment_id, am
             "address": address,
             "amount": amount,
             "quantity": quantity,
-            "payment_id": payment_id
+            "payment_id": payment_id,
+            "payment_status":"Success"
         }
         
-        result = supabase.table('orders').insert(order_data).execute()
+        result = supabase.table('vibuthi_orders').insert(order_data).execute()
         print(f"✅ Order #{order_no} saved to Supabase")
+        print(f"result: {result}")
         return True
         
     except Exception as e:
