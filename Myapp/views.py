@@ -111,35 +111,150 @@ def save_order_to_supabase(name, email, phone, address, quantity, payment_id, am
 # ==========================================
 # SEND WHATSAPP MESSAGE
 # ==========================================
-def send_whatsapp_message(name, phone, quantity):
+
+
+
+import requests
+
+def send_whatsapp_message_template(name, phone, quantity, payment_id, amount, order_date=""):
     try:
-        # Remove spaces and +91
-        phone = phone.replace(" ", "").replace("+91", "")
-        
-        # Fix the URL - the '12345' looks suspicious, replace with your actual instance ID
-        url = f"https://live-mt-server.wati.io/12345/api/v1/sendTemplateMessage?whatsappNumber=91{phone}"
-        
+        print("========== MBG WHATSAPP TEMPLATE ==========")
+
+        phone = str(phone).replace(" ", "").replace("+", "").strip()
+        if not phone.startswith("91"):
+            phone = "91" + phone
+
         payload = {
-            "template_name": "order_confirmation",
-            "broadcast_name": "order_confirmation",
-            "parameters": [
-                {"name": "name", "value": name},
-                {"name": "quantity", "value": quantity}
-            ]
+            "templateName": "vibhuti_orderconfirmation",   # Your approved template name
+            "senderId": phone,                   # No '+' unless documentation requires it
+            "chatId": "1402050",
+            "variables": {
+                "header": [],
+                "body": [
+                    str(name),
+                    str(quantity),
+                    str(amount),
+                    str(payment_id),
+                    str(order_date)
+                ]
+            }
         }
-        
-        headers = {
-            "Authorization": "wati_f8ed980e-5142-424a-9096-7cb7b2a40bd3.pUd4YizkgaTv3b1hRdnRjpIMRcObEZ9udOuJ6hN2L0_FptY3fKsysDz8Skt30_ziCCNiYbn4FsD0YbmN4OP8jpVDCwpN2scUSqq28QMUwtWjWmMjdxIJNPL8EQIRE3bt",
-            "Content-Type": "application/json"
-        }
-        
-        response = requests.post(url, json=payload, headers=headers, timeout=10)
-        print(f"WhatsApp response: {response.status_code}")
-        return True
-        
+
+        response = requests.post(
+            "https://chatbot.digitalmbg.com/v1/whatsapp/send_templet",
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": "39832662461ae94fa94b03487c7866f3"
+            },
+            json=payload,
+            timeout=30
+        )
+
+        print("Status:", response.status_code)
+        print("Response:", response.text)
+
+        return response.status_code == 200
+
     except Exception as e:
-        print(f"WhatsApp Error: {str(e)}")
+        print(e)
         return False
+
+
+import requests
+def send_whatsapp_message(name, phone, quantity, payment_id, amount, order_date=""):
+
+    phone = str(phone).replace("+", "").replace(" ", "")
+
+    if not phone.startswith("91"):
+        phone = "91" + phone
+
+    payload = {
+        "senderId": "+" + phone,
+        "name": name,
+        "actions": [
+
+            {
+                "action": "set_field_value",
+                "field_name": "name",
+                "value": name
+            },
+
+            {
+                "action": "set_field_value",
+                "field_name": "quantity",
+                "value": str(quantity)
+            },
+
+            {
+                "action": "set_field_value",
+                "field_name": "amount",
+                "value": str(amount)
+            },
+
+            {
+                "action": "set_field_value",
+                "field_name": "payment_id",
+                "value": payment_id
+            },
+
+            {
+                "action": "set_field_value",
+                "field_name": "order_date",
+                "value": order_date
+            },
+
+            {
+                "action": "send_flow",
+                "flow_id": "flow_1782640993578"
+            }
+
+        ]
+    }
+
+    response = requests.post(
+        "https://chatbot.digitalmbg.com/v1/contacts",
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "x-api-key": "39832662461ae94fa94b03487c7866f3"
+        },
+        json=payload
+    )
+
+    print(response.status_code)
+    print(response.text)
+
+
+
+# def send_whatsapp_message(name, phone, quantity):
+#     try:
+#         # Remove spaces and +91
+#         phone = phone.replace(" ", "").replace("+91", "")
+        
+#         # Fix the URL - the '12345' looks suspicious, replace with your actual instance ID
+#         url = f"https://live-mt-server.wati.io/12345/api/v1/sendTemplateMessage?whatsappNumber=91{phone}"
+        
+#         payload = {
+#             "template_name": "order_confirmation",
+#             "broadcast_name": "order_confirmation",
+#             "parameters": [
+#                 {"name": "name", "value": name},
+#                 {"name": "quantity", "value": quantity}
+#             ]
+#         }
+        
+#         headers = {
+#             "Authorization": "wati_f8ed980e-5142-424a-9096-7cb7b2a40bd3.pUd4YizkgaTv3b1hRdnRjpIMRcObEZ9udOuJ6hN2L0_FptY3fKsysDz8Skt30_ziCCNiYbn4FsD0YbmN4OP8jpVDCwpN2scUSqq28QMUwtWjWmMjdxIJNPL8EQIRE3bt",
+#             "Content-Type": "application/json"
+#         }
+        
+#         response = requests.post(url, json=payload, headers=headers, timeout=10)
+#         print(f"WhatsApp response: {response.status_code}")
+#         return True
+        
+#     except Exception as e:
+#         print(f"WhatsApp Error: {str(e)}")
+#         return False
 
 # ==========================================
 # USER PAYMENT POST - MAIN FUNCTION
@@ -249,7 +364,7 @@ def userpayment_post(request):
         
         # 3. Send WhatsApp (non-critical)
         try:
-            send_whatsapp_message(name, phone, quantity)
+            send_whatsapp_message(name, phone, quantity, payment_id, amount, order_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         except Exception as e:
             print(f"❌ WhatsApp error: {str(e)}")
         
